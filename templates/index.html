@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SSRF Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2em;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        input[type="text"] {
+            padding: 8px;
+            width: 400px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 8px 16px;
+            background-color: #3498db;
+            border: none;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .form-container {
+            margin-top: 2em;
+            padding: 1em;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            max-width: 600px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Registered Users</h1>
+    <ul>
+        {% for user in users %}
+            <li>{{ user.username }}</li>
+        {% endfor %}
+    </ul>
+
+    <div class="form-container">
+        <h2>Fetch a URL (SSRF Demo)</h2>
+        <form action="{{ url_for('fetch_url') }}" method="post">
+            <label for="url">Target URL:</label><br>
+            <input type="text" name="url" id="url" placeholder="http://example.com" required>
+            <button type="submit">Fetch</button>
+        </form>
+    </div>
+</body>
+</html>

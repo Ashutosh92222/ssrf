@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SSRF Demo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="alert alert-danger">
+            <strong>SSRF Demo:</strong> This page is intentionally vulnerable to <b>Server-Side Request Forgery (SSRF)</b>.<br>
+            <ul>
+                <li>Any URL you enter will be fetched by the server, not your browser.</li>
+                <li>Try fetching <code>http://localhost:5000/</code> (the server's own homepage) or <code>http://127.0.0.1:5000/</code>.</li>
+                <li>Notice how the server can access internal resources that your browser cannot.</li>
+            </ul>
+        </div>
+        <h2>SSRF Demo</h2>
+        <form method="POST" action="{{ url_for('fetch_url') }}">
+            <div class="form-group">
+                <label for="url">Enter a URL to fetch:</label>
+                <input type="text" class="form-control" id="url" name="url" placeholder="http://example.com" required>
+            </div>
+            <button type="submit" class="btn btn-info">Fetch</button>
+        </form>
+        <a href="{{ url_for('index') }}" class="btn btn-link mt-3">Back to Dashboard</a>
+    </div>
+</body>
+</html>

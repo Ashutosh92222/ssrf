@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fetch Result</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="alert alert-warning">
+            <strong>Note:</strong> This is the raw response from the server for the URL you entered.
+        </div>
+        <h2>Fetched: {{ url }}</h2>
+        {% if ssrf_info %}
+        <div class="mb-3">
+            <strong>Status Code:</strong> {{ ssrf_info.status_code }}<br>
+            <strong>Response Headers:</strong>
+            <pre>{{ ssrf_info.headers | tojson(indent=2) }}</pre>
+        </div>
+        {% endif %}
+        <pre style="white-space: pre-wrap; word-break: break-all; background: #f8f9fa; padding: 1em;">{{ content }}</pre>
+        <div class="alert alert-info mt-3">
+            <strong>SSRF Explanation:</strong> The server made a request to <code>{{ url }}</code> and returned the response above. If you entered a local address (like <code>localhost</code>), you may see content not accessible from your browser, demonstrating SSRF.
+        </div>
+        <a href="{{ url_for('fetch_url') }}" class="btn btn-link mt-3">Back</a>
+    </div>
+</body>
+</html>
+Flask
+Flask_SQLAlchemy
+requests

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Password Reset Demo</a>
+        <div class="ml-auto">
+            <span class="navbar-text text-white mr-3">Logged in as: <b>{{ username }}</b></span>
+            <a href="{{ url_for('logout') }}" class="btn btn-outline-light btn-sm">Logout</a>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <div class="jumbotron">
+            <h1 class="display-4">Welcome, {{ username }}!</h1>
+            <p class="lead">This is your dashboard. Try the SSRF demo or reset your password using the navigation links.</p>
+            <hr class="my-4">
+            <a class="btn btn-primary btn-lg" href="{{ url_for('fetch_url') }}" role="button">Try SSRF Demo</a>
+        </div>
+    </div>
+</body>
+</html>
